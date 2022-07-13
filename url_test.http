@@ -1,0 +1,36 @@
+###
+GET http://localhost:8080/
+
+###
+
+POST http://localhost:8080/api/url
+Content-Type: application/json
+
+{
+  "destination": "www.google.com",
+  "alias": "google"
+}
+
+###
+
+GET http://localhost:8080/api/url?alias=google
+Content-Type: application/x-www-form-urlencoded
+
+###
+
+DELETE http://localhost:8080/api/url?id=edd7e2b3-b0b6-4938-84fe-748cd0929fab
+
+###
+
+PUT http://localhost:8080/api/url
+Content-Type: application/json
+
+{
+  "id": "b3b954fc-f1b1-4159-9c0c-4078d908b51a",
+  "destination": "www.facebook.com",
+  "alias": "facebook"
+}
+
+###
+
+GET http://localhost:8080/google

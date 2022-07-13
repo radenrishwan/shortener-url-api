@@ -1,0 +1,14 @@
+services:
+  database:
+    container_name: 'shortener-mysql'
+    image: mysql:latest
+    restart: always
+    build:
+      context: .
+    ports:
+      - '3307:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: alskdhjlashdalshdljkashdjklashdklajshkasj
+      MYSQL_DATABASE: shortener
+      MYSQL_USER: shortener
+      MYSQL_PASSWORD: asdjhjakshdkasjhdaksjhdaksj

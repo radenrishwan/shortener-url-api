@@ -1,14 +1,14 @@
 services:
   database:
     container_name: 'shortener-mysql'
-    image: mysql:latest
+    image: mysql:8.0.29
     restart: always
     build:
       context: .
     ports:
-      - '3307:3306'
+      - '${DB_PORT}:3306'
     environment:
-      MYSQL_ROOT_PASSWORD: alskdhjlashdalshdljkashdjklashdklajshkasj
-      MYSQL_DATABASE: shortener
-      MYSQL_USER: shortener
-      MYSQL_PASSWORD: asdjhjakshdkasjhdaksjhdaksj
+      MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}

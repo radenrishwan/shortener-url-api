@@ -1,15 +1,18 @@
 package main
 
 import (
+	"os"
+	"seior-shortener-url/database"
+	"seior-shortener-url/handler"
+	"seior-shortener-url/model/entity"
+	"seior-shortener-url/repository"
+	"seior-shortener-url/router"
+	"seior-shortener-url/service"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/joho/godotenv"
-	"seior-shortener-url/database"
-	"seior-shortener-url/handler"
-	"seior-shortener-url/repository"
-	"seior-shortener-url/router"
-	"seior-shortener-url/service"
 )
 
 func main() {
@@ -19,6 +22,10 @@ func main() {
 	}
 
 	db := database.NewDB()
+
+	// migrate the schema
+	db.AutoMigrate(&entity.Url{})
+
 	app := fiber.New(fiber.Config{
 		ErrorHandler: handler.ErrorHandler,
 	})
@@ -45,7 +52,7 @@ func main() {
 		})
 	})
 
-	err = app.Listen(":8080")
+	err = app.Listen(":" + os.Getenv("APP_PORT"))
 	if err != nil {
 		panic(err)
 	}
